@@ -2,7 +2,7 @@ package br.gov.bb.modelo;
 
 public class Conta {
 
-	int numeroConta;
-	double saldo;
+	Integer numeroConta;
+	Double saldo;
 	Cliente cliente;
 }
