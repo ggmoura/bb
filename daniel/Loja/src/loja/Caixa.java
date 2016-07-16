@@ -1,3 +1,4 @@
+package loja;
 public class Caixa {
 	public static void main(String[] args) {
 		Venda v1 = new Venda();

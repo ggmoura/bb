@@ -1,3 +1,4 @@
+package loja;
 public class Venda {
 
 	Cliente cliente;
