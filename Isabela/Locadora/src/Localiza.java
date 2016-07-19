@@ -3,6 +3,7 @@ public class Localiza {
 	public static void main(String[] args) {
 
 		Locacao aluguel = new Locacao();
+		
 		Cliente cli = new Cliente();// nesse momento eu aloquei um espaço na
 									// memória para as variáveis do objeto
 									// cliente
