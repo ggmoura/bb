@@ -2,11 +2,16 @@ package br.gov.bb.modelo.banco;
 
 import br.gov.bb.modelo.Cliente;
 
-public class Conta {
+public abstract class Conta {
 
 	public Integer numeroConta;
 	private Double saldo;
 	public Cliente cliente;
+	
+	public Conta() {
+		// TODO aula construtor
+		saldo = 0d;
+	}
 	
 	public void depositar(Double saldo) {
 		this.saldo += saldo;
