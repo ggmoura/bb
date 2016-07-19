@@ -1,4 +1,6 @@
-package br.gov.bb.modelo;
+package br.gov.bb.modelo.banco;
+
+import br.gov.bb.modelo.Cliente;
 
 public class Conta {
 
