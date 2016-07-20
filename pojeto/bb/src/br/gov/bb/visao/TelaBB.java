@@ -35,6 +35,9 @@ public class TelaBB {
 			case 4:
 				captalizar(c);
 				break;
+			case 5:
+				efetuarSaque(c);
+				break;
 
 			default:
 				break;
@@ -44,6 +47,13 @@ public class TelaBB {
 		
 		leitura.close();
 		
+	}
+
+	private void efetuarSaque(Conta c) {
+		System.out.print("Informe o valor a ser sacado: ");
+		Double valor = leitura.nextDouble();
+		String mensagem = c.sacar(valor) ? "Rolou" : "foi triste!";
+		System.out.println(mensagem);
 	}
 
 	private void tarifar(Conta c) {
@@ -123,6 +133,7 @@ public class TelaBB {
 				+ "2 - Exibir dados da conta\n\t"
 				+ "3 - Tarifar contas\n\t"
 				+ "4 - Captalizar contas\n\t"
+				+ "5 - Sacar\n\t"
 				+ "0 - Sair";
 	}
 	
