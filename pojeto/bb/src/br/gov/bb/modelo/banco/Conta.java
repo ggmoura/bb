@@ -4,13 +4,24 @@ import br.gov.bb.modelo.Cliente;
 
 public abstract class Conta {
 
+	//TODO falar sobre final
+	//FIXME aqui a regra eh clara cruzeir tem mais titulos
+	//XXX alguem tem que arrumar isso rapidinho
 	public Integer numeroConta;
-	private Double saldo;
+	protected Double saldo;
 	public Cliente cliente;
-	
+
 	public Conta() {
-		// TODO aula construtor
 		saldo = 0d;
+	}
+	
+	public Conta(Double saldo) {
+		this();
+	}
+	
+	public Conta(Double saldo, Cliente cliente) {
+		this(saldo);
+		this.cliente = cliente;
 	}
 	
 	public void depositar(Double saldo) {
@@ -20,5 +31,7 @@ public abstract class Conta {
 	public Double consultarSaldo() {
 		return this.saldo;
 	}
+	
+	public abstract Boolean sacar(Double valor);
 	
 }

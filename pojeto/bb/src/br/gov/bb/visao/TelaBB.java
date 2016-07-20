@@ -8,6 +8,8 @@ import br.gov.bb.modelo.ContaInvestimento;
 import br.gov.bb.modelo.ContaPoupanca;
 import br.gov.bb.modelo.ContaSalario;
 import br.gov.bb.modelo.banco.Conta;
+import br.gov.bb.modelo.contrato.ICaptalizavel;
+import br.gov.bb.modelo.contrato.IPagavel;
 
 public class TelaBB {
 
@@ -27,6 +29,12 @@ public class TelaBB {
 			case 2:
 				System.out.println("Saldo: " + c.consultarSaldo());
 				break;
+			case 3:
+				tarifar(c);
+				break;
+			case 4:
+				captalizar(c);
+				break;
 
 			default:
 				break;
@@ -36,6 +44,18 @@ public class TelaBB {
 		
 		leitura.close();
 		
+	}
+
+	private void tarifar(Conta c) {
+		if (c instanceof IPagavel) {
+			((IPagavel) c).tarifar();
+		}
+	}
+	
+	private void captalizar(Conta c) {
+		if (c instanceof ICaptalizavel) {
+			((ICaptalizavel) c).captalizar();
+		}
 	}
 
 	private Conta criarConta() {
@@ -82,22 +102,27 @@ public class TelaBB {
 	private void criarConta(ContaCorrente c) {
 		criarConta((Conta)c);
 		System.out.print("Informe o valor da taxa de serviço: ");
-		c.taxaServico = leitura.nextDouble();
+		c.setTaxaServico(leitura.nextDouble());
 	}
 	private void criarConta(ContaPoupanca c) {
-		
+		criarConta((Conta)c);
+		//TODO - cadastrar conta Poupanca
 	}
 	private void criarConta(ContaInvestimento c) {
-		
+		criarConta((Conta)c);
+		//TODO - cadastrar conta Poupanca		
 	}
 	private void criarConta(ContaSalario c) {
-		
+		criarConta((Conta)c);
+		//TODO - cadastrar conta salario
 	}
 	
 	private String recuperarMenu() {
 		return "Informe:\n\t"
 				+ "1 - Cadastrar Conta\n\t"
 				+ "2 - Exibir dados da conta\n\t"
+				+ "3 - Tarifar contas\n\t"
+				+ "4 - Captalizar contas\n\t"
 				+ "0 - Sair";
 	}
 	
