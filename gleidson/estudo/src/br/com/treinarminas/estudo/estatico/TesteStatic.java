@@ -2,6 +2,7 @@ package br.com.treinarminas.estudo.estatico;
 
 public class TesteStatic {
 
+	@SuppressWarnings("static-access")
 	public static void main(String[] args) {
 		
 		ContaPoupanca cp = new ContaPoupanca();

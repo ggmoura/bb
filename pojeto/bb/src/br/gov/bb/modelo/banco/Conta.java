@@ -7,7 +7,7 @@ public abstract class Conta {
 	//TODO falar sobre final
 	//FIXME aqui a regra eh clara cruzeir tem mais titulos
 	//XXX alguem tem que arrumar isso rapidinho
-	public Integer numeroConta;
+	private Integer numeroConta;
 	protected Double saldo;
 	public Cliente cliente;
 
@@ -32,6 +32,30 @@ public abstract class Conta {
 		return this.saldo;
 	}
 	
+	public Integer getNumeroConta() {
+		return numeroConta;
+	}
+
+	public void setNumeroConta(Integer numeroConta) {
+		this.numeroConta = numeroConta;
+	}
+
+	public Double getSaldo() {
+		return saldo;
+	}
+
+	public void setSaldo(Double saldo) {
+		this.saldo = saldo;
+	}
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+
 	public abstract Boolean sacar(Double valor);
 	
 }

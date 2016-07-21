@@ -16,11 +16,17 @@ public class TesteArray {
 		idades[8] = 11;
 		idades[9] = 00;
 		
-		for (int i = 0; i < idades.length; i++) {
-			System.out.print(idades[i] + " ");
-		}
-		
+		imprimir(idades);
 		
 	}
+	
+	private static void imprimir(Integer[] idades) {
+		
+		for (Integer idade : idades) {
+			System.out.println(idade);
+		}
+	}
+	
+	
 	
 }

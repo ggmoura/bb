@@ -14,29 +14,33 @@ import br.gov.bb.modelo.contrato.IPagavel;
 public class TelaBB {
 
 	private Scanner leitura = new Scanner(System.in);
+	private Conta[] contas = new Conta[1000];
 
 	public void iniciarOperacao() {
 		int opcao = 0;
-		//[leitura] - variavel para recuperar informacoes do teclado
-		Conta c = null;
+		Integer index = 0;
+		Conta conta = null;
 		do {
 			System.out.println(recuperarMenu());
 			opcao = leitura.nextInt();
 			switch (opcao) {
 			case 1:
-				c = criarConta();
+				conta = criarConta();
+				conta.setNumeroConta(index);
+				contas[index] = conta;
+				index++;
 				break;
 			case 2:
-				System.out.println("Saldo: " + c.consultarSaldo());
+				exibirDadosDaConta();
 				break;
 			case 3:
-				tarifar(c);
+				tarifar();
 				break;
 			case 4:
-				captalizar(c);
+				captalizar();
 				break;
 			case 5:
-				efetuarSaque(c);
+				efetuarSaque();
 				break;
 
 			default:
@@ -49,22 +53,48 @@ public class TelaBB {
 		
 	}
 
-	private void efetuarSaque(Conta c) {
+	private void exibirDadosDaConta() {
+		Conta c = recuperarConta();
+		System.out.println(c.getSaldo());
+	}
+	
+	private Conta recuperarConta() {
+		
+		for (Conta conta : contas) {
+			if (conta != null) {
+				System.out.println("Conta numero " + conta.getNumeroConta() + 
+						" - " + conta.getCliente().getNome());
+			}
+		}
+		
+		System.out.print("Informe o numero da conta da qual deseja exibir os dados: ");
+		Integer index = leitura.nextInt();
+		leitura.nextLine();
+		return contas[index];
+	}
+
+	private void efetuarSaque() {
+		Conta c = recuperarConta();
 		System.out.print("Informe o valor a ser sacado: ");
 		Double valor = leitura.nextDouble();
 		String mensagem = c.sacar(valor) ? "Rolou" : "foi triste!";
 		System.out.println(mensagem);
 	}
 
-	private void tarifar(Conta c) {
-		if (c instanceof IPagavel) {
-			((IPagavel) c).tarifar();
+	private void tarifar() {
+		for (Conta conta : contas) {
+			if (conta != null && conta instanceof IPagavel) {
+				((IPagavel) conta).tarifar();
+			}			
 		}
+		
 	}
 	
-	private void captalizar(Conta c) {
-		if (c instanceof ICaptalizavel) {
-			((ICaptalizavel) c).captalizar();
+	private void captalizar() {
+		for (Conta conta : contas) {
+			if (conta != null && conta instanceof ICaptalizavel) {
+				((ICaptalizavel) conta).captalizar();
+			}			
 		}
 	}
 
