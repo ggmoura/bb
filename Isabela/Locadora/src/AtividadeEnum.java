@@ -9,6 +9,8 @@ public class AtividadeEnum {
 		DiaSemana dia = dias[numeroDia];
 		
 		System.out.print("Sábado: " + dia);
+		
+		System.out.println(dia.getElement());
 
 	}
 
