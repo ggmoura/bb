@@ -8,24 +8,42 @@ import br.gov.bb.modelo.ContaInvestimento;
 import br.gov.bb.modelo.ContaPoupanca;
 import br.gov.bb.modelo.ContaSalario;
 import br.gov.bb.modelo.banco.Conta;
+import br.gov.bb.modelo.contrato.ICaptalizavel;
+import br.gov.bb.modelo.contrato.IPagavel;
 
 public class TelaBB {
 
 	private Scanner leitura = new Scanner(System.in);
+	private Conta[] contas = new Conta[1000];
 
 	public void iniciarOperacao() {
 		int opcao = 0;
-		//[leitura] - variavel para recuperar informacoes do teclado
-		Conta c = null;
+		Integer index = 0;
+		Conta conta = null;
 		do {
 			System.out.println(recuperarMenu());
 			opcao = leitura.nextInt();
 			switch (opcao) {
 			case 1:
-				c = criarConta();
+				conta = criarConta();
+				conta.setNumeroConta(index);
+				contas[index] = conta;
+				index++;
 				break;
 			case 2:
-				System.out.println("Saldo: " + c.consultarSaldo());
+				exibirDadosDaConta();
+				break;
+			case 3:
+				tarifar();
+				break;
+			case 4:
+				captalizar();
+				break;
+			case 5:
+				efetuarSaque();
+				break;
+			case 6:
+				editarTaxaRendimento();
 				break;
 
 			default:
@@ -36,6 +54,58 @@ public class TelaBB {
 		
 		leitura.close();
 		
+	}
+
+	private void editarTaxaRendimento() {
+		System.out.print("Informe o valor da nova taxa de rendimento: ");
+		Float novaTaxa = leitura.nextFloat();
+		leitura.nextLine();
+		ContaPoupanca.setTaxaRendimento(novaTaxa);
+	}
+
+	private void exibirDadosDaConta() {
+		Conta c = recuperarConta();
+		System.out.println(c);
+	}
+	
+	private Conta recuperarConta() {
+		
+		for (Conta conta : contas) {
+			if (conta != null) {
+				System.out.println("Conta numero " + conta.getNumeroConta() + 
+						" - " + conta.getCliente().getNome());
+			}
+		}
+		
+		System.out.print("Informe o numero da conta da qual deseja exibir os dados: ");
+		Integer index = leitura.nextInt();
+		leitura.nextLine();
+		return contas[index];
+	}
+
+	private void efetuarSaque() {
+		Conta c = recuperarConta();
+		System.out.print("Informe o valor a ser sacado: ");
+		Double valor = leitura.nextDouble();
+		String mensagem = c.sacar(valor) ? "Rolou" : "foi triste!";
+		System.out.println(mensagem);
+	}
+
+	private void tarifar() {
+		for (Conta conta : contas) {
+			if (conta != null && conta instanceof IPagavel) {
+				((IPagavel) conta).tarifar();
+			}			
+		}
+		
+	}
+	
+	private void captalizar() {
+		for (Conta conta : contas) {
+			if (conta != null && conta instanceof ICaptalizavel) {
+				((ICaptalizavel) conta).captalizar();
+			}			
+		}
 	}
 
 	private Conta criarConta() {
@@ -82,22 +152,31 @@ public class TelaBB {
 	private void criarConta(ContaCorrente c) {
 		criarConta((Conta)c);
 		System.out.print("Informe o valor da taxa de serviço: ");
-		c.taxaServico = leitura.nextDouble();
+		c.setTaxaServico(leitura.nextDouble());
 	}
 	private void criarConta(ContaPoupanca c) {
-		
+		criarConta((Conta)c);
+		System.out.print("Informe o dia do rendimento: ");
+		c.diaRendimento = leitura.nextInt();
+		leitura.nextLine();
 	}
 	private void criarConta(ContaInvestimento c) {
-		
+		criarConta((Conta)c);
+		//TODO - cadastrar conta Poupanca		
 	}
 	private void criarConta(ContaSalario c) {
-		
+		criarConta((Conta)c);
+		//TODO - cadastrar conta salario
 	}
 	
 	private String recuperarMenu() {
 		return "Informe:\n\t"
 				+ "1 - Cadastrar Conta\n\t"
 				+ "2 - Exibir dados da conta\n\t"
+				+ "3 - Tarifar contas\n\t"
+				+ "4 - Captalizar contas\n\t"
+				+ "5 - Sacar\n\t"
+				+ "6 - Editar Taxa Rendimento\n\t"
 				+ "0 - Sair";
 	}
 	

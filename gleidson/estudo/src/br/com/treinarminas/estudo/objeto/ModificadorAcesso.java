@@ -1,4 +1,4 @@
-package br.com.treinarminas.estudo;
+package br.com.treinarminas.estudo.objeto;
 
 import br.com.treinarminas.estudo.acesso.ClassePai;
 import br.com.treinarminas.estudo.acesso.ModificadorDefault;
