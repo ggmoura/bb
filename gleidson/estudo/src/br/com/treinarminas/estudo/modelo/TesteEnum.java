@@ -14,6 +14,16 @@ public class TesteEnum {
 		DiaSemana quarta = dias[3];
 		System.out.println("Exempolo toString: "+ quarta);
 		
+		String sextaStr = "SEX";
+		
+		DiaSemana sexta = DiaSemana.valueOf(sextaStr);
+		System.out.println(sexta);
+		
+		
+		Integer diaSemanaInt = sexta.ordinal();
+		
+		System.out.println(diaSemanaInt);
+		
 	}
 	
 }
