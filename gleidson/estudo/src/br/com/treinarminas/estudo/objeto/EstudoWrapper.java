@@ -1,4 +1,4 @@
-package br.com.treinarminas.estudo;
+package br.com.treinarminas.estudo.objeto;
 
 public class EstudoWrapper {
 

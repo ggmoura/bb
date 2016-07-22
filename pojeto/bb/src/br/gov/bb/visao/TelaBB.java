@@ -42,6 +42,9 @@ public class TelaBB {
 			case 5:
 				efetuarSaque();
 				break;
+			case 6:
+				editarTaxaRendimento();
+				break;
 
 			default:
 				break;
@@ -53,9 +56,16 @@ public class TelaBB {
 		
 	}
 
+	private void editarTaxaRendimento() {
+		System.out.print("Informe o valor da nova taxa de rendimento: ");
+		Float novaTaxa = leitura.nextFloat();
+		leitura.nextLine();
+		ContaPoupanca.setTaxaRendimento(novaTaxa);
+	}
+
 	private void exibirDadosDaConta() {
 		Conta c = recuperarConta();
-		System.out.println(c.getSaldo());
+		System.out.println(c);
 	}
 	
 	private Conta recuperarConta() {
@@ -146,7 +156,9 @@ public class TelaBB {
 	}
 	private void criarConta(ContaPoupanca c) {
 		criarConta((Conta)c);
-		//TODO - cadastrar conta Poupanca
+		System.out.print("Informe o dia do rendimento: ");
+		c.diaRendimento = leitura.nextInt();
+		leitura.nextLine();
 	}
 	private void criarConta(ContaInvestimento c) {
 		criarConta((Conta)c);
@@ -164,6 +176,7 @@ public class TelaBB {
 				+ "3 - Tarifar contas\n\t"
 				+ "4 - Captalizar contas\n\t"
 				+ "5 - Sacar\n\t"
+				+ "6 - Editar Taxa Rendimento\n\t"
 				+ "0 - Sair";
 	}
 	

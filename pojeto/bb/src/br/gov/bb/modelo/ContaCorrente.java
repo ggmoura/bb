@@ -47,5 +47,19 @@ public class ContaCorrente extends Conta implements IPagavel {
 	public void tarifar() {
 		sacar(19d);
 	}
+	
+	@Override
+	public Double consultarSaldo() {
+		// TODO Auto-generated method stub
+		return super.consultarSaldo();
+	}
+	
+	@Override
+	public String toString() {
+		String comportamentoDoPai = super.toString();
+		comportamentoDoPai = comportamentoDoPai + " " + taxaServico;
+		return comportamentoDoPai;
+	}
+	
 
 }

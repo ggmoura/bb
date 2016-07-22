@@ -5,7 +5,8 @@ import br.gov.bb.modelo.contrato.ICaptalizavel;
 
 public class ContaPoupanca extends Conta implements ICaptalizavel {
 
-	public Float taxaRendimento;
+	private static Float taxaRendimento;
+	public Integer diaRendimento;
 
 	@Override
 	public Boolean sacar(Double valor) {
@@ -13,6 +14,22 @@ public class ContaPoupanca extends Conta implements ICaptalizavel {
 	}
 	@Override
 	public void captalizar() {
-		depositar(saldo * 0.01);
+		depositar(saldo * taxaRendimento);
 	}
+	
+	@Override
+	public String toString() {
+		String comportamentoDoPai = super.toString();
+		comportamentoDoPai = comportamentoDoPai + " " + diaRendimento;
+		return comportamentoDoPai;
+	}
+	public static Float getTaxaRendimento() {
+		return taxaRendimento;
+	}
+	public static void setTaxaRendimento(Float taxaRendimento) {
+		ContaPoupanca.taxaRendimento = taxaRendimento;
+	}
+	
+	
+	
 }
