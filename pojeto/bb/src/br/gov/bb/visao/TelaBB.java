@@ -1,5 +1,7 @@
 package br.gov.bb.visao;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import br.gov.bb.modelo.Cliente;
@@ -14,11 +16,10 @@ import br.gov.bb.modelo.contrato.IPagavel;
 public class TelaBB {
 
 	private Scanner leitura = new Scanner(System.in);
-	private Conta[] contas = new Conta[1000];
+	private List<Conta> contas = new ArrayList<>();
 
 	public void iniciarOperacao() {
 		int opcao = 0;
-		Integer index = 0;
 		Conta conta = null;
 		do {
 			System.out.println(recuperarMenu());
@@ -26,9 +27,7 @@ public class TelaBB {
 			switch (opcao) {
 			case 1:
 				conta = criarConta();
-				conta.setNumeroConta(index);
-				contas[index] = conta;
-				index++;
+				contas.add(conta);
 				break;
 			case 2:
 				exibirDadosDaConta();
@@ -69,18 +68,16 @@ public class TelaBB {
 	}
 	
 	private Conta recuperarConta() {
-		
+		Integer i = 0;
 		for (Conta conta : contas) {
-			if (conta != null) {
-				System.out.println("Conta numero " + conta.getNumeroConta() + 
-						" - " + conta.getCliente().getNome());
-			}
+			System.out.println("Conta numero " + (i++) + 
+					" - " + conta.getCliente().getNome());
 		}
 		
 		System.out.print("Informe o numero da conta da qual deseja exibir os dados: ");
 		Integer index = leitura.nextInt();
 		leitura.nextLine();
-		return contas[index];
+		return contas.get(index);
 	}
 
 	private void efetuarSaque() {
