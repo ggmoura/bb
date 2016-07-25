@@ -1,4 +1,4 @@
-package br.com.treinarminas.estudo.map;
+package br.com.treinarminas.estudo.collection.map;
 
 import java.util.ArrayList;
 import java.util.HashMap;
