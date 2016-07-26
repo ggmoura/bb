@@ -1,6 +1,7 @@
 package br.gov.bb.modelo;
 
 import br.gov.bb.modelo.banco.Conta;
+import br.gov.bb.modelo.banco.SaldoInsuficienteException;
 import br.gov.bb.modelo.contrato.IPagavel;
 
 public class ContaCorrente extends Conta implements IPagavel {
@@ -14,17 +15,16 @@ public class ContaCorrente extends Conta implements IPagavel {
 	}
 
 	@Override
-	public Boolean sacar(Double valor) {
-		Boolean sacou = Boolean.FALSE;
+	public void sacar(Double valor) throws SaldoInsuficienteException {
 		if (consultarSaldo() >= valor) {
 			saldo = saldo - valor;
-			sacou = Boolean.TRUE;
 		} else if (saldo + limiteCredito >= valor) {
 			limiteCredito = limiteCredito - (valor - saldo);
 			saldo = 0d;
-			sacou = Boolean.TRUE;
 		}
-		return sacou;
+		SaldoInsuficienteException saldoInsuficienteException = new SaldoInsuficienteException();
+		saldoInsuficienteException.setSaldoAtual(consultarSaldo());
+		throw saldoInsuficienteException;
 	}
 
 	public Double getTaxaServico() {
@@ -45,13 +45,16 @@ public class ContaCorrente extends Conta implements IPagavel {
 
 	@Override
 	public void tarifar() {
-		sacar(19d);
+		try {
+			sacar(19d);
+		} catch (SaldoInsuficienteException e) {
+			System.out.println("spc");
+		}
 	}
 	
 	@Override
 	public Double consultarSaldo() {
-		// TODO Auto-generated method stub
-		return super.consultarSaldo();
+		return super.consultarSaldo() + limiteCredito;
 	}
 	
 	@Override

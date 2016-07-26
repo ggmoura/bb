@@ -56,13 +56,11 @@ public abstract class Conta {
 		this.cliente = cliente;
 	}
 
-
-	
 	@Override
 	public String toString() {
 		return numeroConta + ", " + cliente.getNome() + " " + saldo;
 	}
 	
-	public abstract Boolean sacar(Double valor);
+	public abstract void sacar(Double valor) throws SaldoInsuficienteException;
 	
 }

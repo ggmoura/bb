@@ -4,12 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import javax.swing.JOptionPane;
+
 import br.gov.bb.modelo.Cliente;
 import br.gov.bb.modelo.ContaCorrente;
 import br.gov.bb.modelo.ContaInvestimento;
 import br.gov.bb.modelo.ContaPoupanca;
 import br.gov.bb.modelo.ContaSalario;
 import br.gov.bb.modelo.banco.Conta;
+import br.gov.bb.modelo.banco.SaldoInsuficienteException;
 import br.gov.bb.modelo.contrato.ICaptalizavel;
 import br.gov.bb.modelo.contrato.IPagavel;
 
@@ -84,8 +87,11 @@ public class TelaBB {
 		Conta c = recuperarConta();
 		System.out.print("Informe o valor a ser sacado: ");
 		Double valor = leitura.nextDouble();
-		String mensagem = c.sacar(valor) ? "Rolou" : "foi triste!";
-		System.out.println(mensagem);
+		try {
+			c.sacar(valor);
+		} catch (SaldoInsuficienteException e) {
+			JOptionPane.showMessageDialog(null, "nao rolou, SEU SALDO É " + e.getSaldoAtual());
+		}
 	}
 
 	private void tarifar() {
