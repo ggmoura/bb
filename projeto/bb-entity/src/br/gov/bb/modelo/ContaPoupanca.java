@@ -9,8 +9,8 @@ public class ContaPoupanca extends Conta implements ICaptalizavel {
 	public Integer diaRendimento;
 
 	@Override
-	public Boolean sacar(Double valor) {
-		return null;
+	public void sacar(Double valor) {
+		//TODO - impolementar
 	}
 	@Override
 	public void captalizar() {
