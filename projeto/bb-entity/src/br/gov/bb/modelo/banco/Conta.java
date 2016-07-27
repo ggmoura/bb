@@ -58,7 +58,7 @@ public abstract class Conta {
 
 	@Override
 	public String toString() {
-		return numeroConta + ", " + cliente.getNome() + " " + saldo;
+		return numeroConta + ";" + cliente.getNome() + ";" + saldo;
 	}
 	
 	public abstract void sacar(Double valor) throws SaldoInsuficienteException;

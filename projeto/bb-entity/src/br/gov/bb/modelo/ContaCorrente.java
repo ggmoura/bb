@@ -60,8 +60,9 @@ public class ContaCorrente extends Conta implements IPagavel {
 
 	@Override
 	public String toString() {
-		String comportamentoDoPai = super.toString();
-		comportamentoDoPai = comportamentoDoPai + " " + taxaServico;
+		String comportamentoDoPai = this.getClass().getName() + ";";
+		comportamentoDoPai += super.toString();
+		comportamentoDoPai += ";" + taxaServico + ";" + limiteCredito + ";";
 		return comportamentoDoPai;
 	}
 

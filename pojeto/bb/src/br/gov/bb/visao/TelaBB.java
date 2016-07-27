@@ -6,6 +6,8 @@ import java.util.Scanner;
 
 import javax.swing.JOptionPane;
 
+import br.gov.bb.io.GravadorConta;
+import br.gov.bb.io.LeitorConta;
 import br.gov.bb.modelo.Cliente;
 import br.gov.bb.modelo.ContaCorrente;
 import br.gov.bb.modelo.ContaInvestimento;
@@ -20,6 +22,11 @@ public class TelaBB {
 
 	private Scanner leitura = new Scanner(System.in);
 	private List<Conta> contas = new ArrayList<>();
+	
+	public TelaBB() {
+		LeitorConta leitor = new LeitorConta();
+		contas = leitor.recuperarContas();
+	}
 
 	public void iniciarOperacao() {
 		int opcao = 0;
@@ -47,6 +54,9 @@ public class TelaBB {
 			case 6:
 				editarTaxaRendimento();
 				break;
+			case 0:
+				gravarContas(contas);
+				break;
 
 			default:
 				break;
@@ -56,6 +66,11 @@ public class TelaBB {
 		
 		leitura.close();
 		
+	}
+
+	private void gravarContas(List<Conta> contas2) {
+		GravadorConta gravador = new GravadorConta();
+		gravador.gravarContas(contas);
 	}
 
 	private void editarTaxaRendimento() {
