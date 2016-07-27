@@ -8,7 +8,7 @@ public class ContaCorrente extends Conta implements IPagavel {
 
 	private Double taxaServico;
 	private Double limiteCredito;
-	
+
 	public ContaCorrente() {
 		super(10D);
 		limiteCredito = 300D;
@@ -21,10 +21,11 @@ public class ContaCorrente extends Conta implements IPagavel {
 		} else if (saldo + limiteCredito >= valor) {
 			limiteCredito = limiteCredito - (valor - saldo);
 			saldo = 0d;
+		} else {
+			SaldoInsuficienteException saldoInsuficienteException = new SaldoInsuficienteException();
+			saldoInsuficienteException.setSaldoAtual(consultarSaldo());
+			throw saldoInsuficienteException;
 		}
-		SaldoInsuficienteException saldoInsuficienteException = new SaldoInsuficienteException();
-		saldoInsuficienteException.setSaldoAtual(consultarSaldo());
-		throw saldoInsuficienteException;
 	}
 
 	public Double getTaxaServico() {
@@ -51,18 +52,17 @@ public class ContaCorrente extends Conta implements IPagavel {
 			System.out.println("spc");
 		}
 	}
-	
+
 	@Override
 	public Double consultarSaldo() {
 		return super.consultarSaldo() + limiteCredito;
 	}
-	
+
 	@Override
 	public String toString() {
 		String comportamentoDoPai = super.toString();
 		comportamentoDoPai = comportamentoDoPai + " " + taxaServico;
 		return comportamentoDoPai;
 	}
-	
 
 }
