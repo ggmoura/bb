@@ -39,7 +39,7 @@ public class LeitorConta {
 	private Conta buildConta(String contaStr) {
 		String[] contaArray = contaStr.split(";");
 		
-		try {
+		try {//br.gov.bb.ContaCorrente
 			Conta c = (Conta) Class.forName(contaArray[0]).newInstance();
 			c.setCliente(new Cliente());
 			c.getCliente().setNome(contaArray[2]);
