@@ -36,14 +36,11 @@ public class ExemploOrdenacao {
 		System.out.println(pessoas);
 		
 		Collections.sort(pessoas, new Comparator<Pessoa>() {
-
 			@Override
 			public int compare(Pessoa o1, Pessoa o2) {
 				return o1.peso.compareTo(o2.peso);
 			}
 		});
-		
-		
 		
 	}
 
