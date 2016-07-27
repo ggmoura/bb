@@ -91,6 +91,8 @@ public class TelaBB {
 			c.sacar(valor);
 		} catch (SaldoInsuficienteException e) {
 			JOptionPane.showMessageDialog(null, "nao rolou, SEU SALDO É " + e.getSaldoAtual());
+		} catch (Exception e) {
+			
 		}
 	}
 

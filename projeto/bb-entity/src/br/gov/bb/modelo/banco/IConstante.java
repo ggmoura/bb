@@ -10,5 +10,9 @@ public interface IConstante {
 		String MENSAGEM_ERRO = "Deu zica...";
 		String MENSAGEM_BOAS_VINDAS = "Bem vindo ao Banco do Brasil";
 	}
+	
+	interface ICodigoErro {
+		Long HORA_INVALIDA = 10481L;
+	}
 
 }
