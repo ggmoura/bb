@@ -1,6 +1,5 @@
-package br.com.rubs.jogodasenha.modelo;
+package br.com.rubs.jogodasenha.jdbc.modelo;
 
-import java.util.Calendar;
 import java.util.Date;
 
 public class Contato {
