@@ -1,6 +1,8 @@
 package br.com.rubs.jogodasenha.teste;
 
-import br.com.rubs.jogodasenha.jdbc.dao.ContatoDao;
+import java.sql.SQLException;
+
+import br.com.rubs.jogodasenha.jdbc.dao.CriaContato;
 import br.com.rubs.jogodasenha.jdbc.modelo.Contato;
 
 public class TestaInsere {
@@ -16,10 +18,15 @@ public class TestaInsere {
 		//contato.setDtNascimento(Calendar.getInstance());
 		
 		// grave nessa conexão!!!
-		ContatoDao dao = new ContatoDao();
+		CriaContato cc = new CriaContato();
 		
 		// método elegante
-		dao.adiciona(contato);
+		try {
+			cc.criarContato(contato);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		System.out.println("Gravado!");
 	}
