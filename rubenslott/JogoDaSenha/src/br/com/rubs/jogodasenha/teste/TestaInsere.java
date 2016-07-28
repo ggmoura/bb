@@ -12,10 +12,10 @@ public class TestaInsere {
 
 		// pronto para gravar
 		Contato contato = new Contato();
-		contato.setNome("Rubens Lott");
-		contato.setEmail("rubenslott@oabmg.org.br");
-		contato.setEndereco("Rua Albita, 250 - Cruzeiro");
-		//contato.setDtNascimento(Calendar.getInstance());
+		contato.setNome("Stella Lott");
+		contato.setEmail("stellinhalott@yahoo.org.br");
+		contato.setEndereco("Rua do Ouro, 1885 - Serra/Mangabeiras");
+		//contato.setDataNascimento(Calendar.getInstance());
 		
 		// grave nessa conexão!!!
 		CriaContato cc = new CriaContato();

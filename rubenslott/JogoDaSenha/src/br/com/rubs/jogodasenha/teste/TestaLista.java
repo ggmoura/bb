@@ -2,7 +2,7 @@ package br.com.rubs.jogodasenha.teste;
 
 import java.util.List;
 
-import br.com.rubs.jogodasenha.jdbc.dao.ContatoDao;
+import br.com.rubs.jogodasenha.jdbc.dao.CriaContato;
 import br.com.rubs.jogodasenha.jdbc.modelo.Contato;
 
 public class TestaLista {
@@ -10,7 +10,7 @@ public class TestaLista {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		ContatoDao dao = new ContatoDao();
+		CriaContato cc = new CriaContato();
 
 		List<Contato> contatos = dao.getLista();
 
