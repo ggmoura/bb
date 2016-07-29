@@ -1,14 +1,17 @@
 package br.com.treinarminas.estudo.jdbc.dao;
 
-public interface IBaseDAO {
+import java.util.List;
 
+public interface IBaseDAO<T, ID> {
 	
-	void adicionar(Object obj);
+	void adicionar(T obj);
 	
-	void alterar();
+	void alterar(T obj);
 	
-	void remover();
+	void remover(T obj);
 	
-	void recuperar();
+	T recuperar(ID id);
+	
+	List<T> recuperarTodos();
 	
 }

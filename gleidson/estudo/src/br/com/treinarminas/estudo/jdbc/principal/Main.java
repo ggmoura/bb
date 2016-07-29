@@ -1,12 +1,11 @@
-package br.com.treinarminas.estudo.principal;
+package br.com.treinarminas.estudo.jdbc.principal;
 
 import java.sql.SQLException;
 import java.util.Calendar;
-import java.util.List;
 
-import br.com.treinarminas.estudo.jdbc.dao.CriaContato;
-import br.com.treinarminas.estudo.jdbc.dao.RecuperaContato;
+import br.com.treinarminas.estudo.jdbc.dao.ContatoDAO;
 import br.com.treinarminas.estudo.jdbc.modelo.Contato;
+import br.com.treinarminas.estudo.jdbc.modelo.Endereco;
 
 public class Main {
 
@@ -17,25 +16,22 @@ public class Main {
 		calendar.set(Calendar.MONTH, 10);
 		calendar.set(Calendar.YEAR, 2012);
 		
-		CriaContato cc = new CriaContato();
 		Contato c = new Contato();
 		c.setNome("Maria Sophia");
 		c.setEmail("maria@gmail.com");
-		c.setEndereco("rua da paz 202...");
+		
+		c.setEndereco(new Endereco());
+		c.getEndereco().setBairro("Calafate");
+		c.getEndereco().setComplemento("Apto 102");
+		c.getEndereco().setLogradouro("Rua da Paz");
+		c.getEndereco().setNumero(202);
 		c.setDataNascimento(calendar.getTime());
 		
-		cc.criarContato(c);
+		ContatoDAO dao = new ContatoDAO();
+		dao.adicionar(c);
 		
 		System.out.println("finish");
-		
-		RecuperaContato recuperaContato = new RecuperaContato();
-		List<Contato> contatos = recuperaContato.getListaContatos();
-		
-		for (Contato contato : contatos) {
-			System.out.println(contato);
-		}
-		
-		
+
 	}
 	
 }

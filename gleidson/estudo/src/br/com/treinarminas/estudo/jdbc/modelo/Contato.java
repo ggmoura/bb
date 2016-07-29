@@ -7,7 +7,7 @@ public class Contato {
 	private Long id;
 	private String nome;
 	private String email;
-	private String endereco;
+	private Endereco endereco;
 	private Date dataNascimento;
 
 	// métodos get e set para id, nome, email, endereço e dataNascimento
@@ -28,12 +28,12 @@ public class Contato {
 		this.email = novo;
 	}
 
-	public String getEndereco() {
-		return this.endereco;
+	public Endereco getEndereco() {
+		return endereco;
 	}
 
-	public void setEndereco(String novo) {
-		this.endereco = novo;
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
 	}
 
 	public Long getId() {
