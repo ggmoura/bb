@@ -90,11 +90,11 @@ public class ContatoDAO implements IBaseDAO<Contato, Long> {
 				contato.setId(rs.getLong("id"));
 				contato.setNome(rs.getString("nome"));
 				contato.setEmail(rs.getString("email"));
-				// contato.setEndereco(rs.getString("endereco"));
+				// contato.setEndereco(rs.getInt("endereco"));
 				Date date = rs.getDate("dataNascimento");
 				contato.setDataNascimento(new java.util.Date(date.getTime()));
 				contatos.add(contato);
-			}
+			} 
 			rs.close();
 			stmt.close();
 			connection.close();
