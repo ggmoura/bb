@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import br.com.treinarminas.estudo.jdbc.ConnectionFactory;
@@ -22,17 +23,17 @@ public class ContatoDAO implements IBaseDAO<Contato, Long> {
 
 	@Override
 	public void adicionar(Contato contato) {
-		
+
 		EnderecoDAO enderecoDAO = new EnderecoDAO();
-		
-		
+
 		String sql = "insert into contato (nome,email,endereco,dataNascimento) "
 				+ "values (?,?,?,?)";
 		try {
-			
+
 			enderecoDAO.adicionar(contato.getEndereco());
-			
-			PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+
+			PreparedStatement stmt = connection.prepareStatement(sql,
+					Statement.RETURN_GENERATED_KEYS);
 
 			stmt.setString(1, contato.getNome());
 			stmt.setString(2, contato.getEmail());
@@ -40,15 +41,16 @@ public class ContatoDAO implements IBaseDAO<Contato, Long> {
 			stmt.setDate(4, new Date(contato.getDataNascimento().getTime()));
 			stmt.executeUpdate();
 
-			//try with resources - fecha o recurso ao executar o bloco
+			// try with resources - fecha o recurso ao executar o bloco
 			try (ResultSet result = stmt.getGeneratedKeys()) {
 				if (result.next()) {
 					contato.setId(result.getLong(1));
 				} else {
-					throw new SQLException("Creating user failed, no ID obtained.");
+					throw new SQLException(
+							"Creating user failed, no ID obtained.");
 				}
 			}
-				
+
 			connection.close();
 		} catch (SQLException e) {
 			throw new RuntimeException();
@@ -74,28 +76,52 @@ public class ContatoDAO implements IBaseDAO<Contato, Long> {
 	public List<Contato> recuperarTodos() {
 		List<Contato> contatos = new ArrayList<Contato>();
 		try {
-	         Connection connection = ConnectionFactory.getInstance().getConnection();
-	         PreparedStatement stmt = connection.prepareStatement("select * from contato");
-	         ResultSet rs = stmt.executeQuery();
-	         Contato contato = null;
-	         while (rs.next()) {
-	             // criando o objeto Contato
-	             contato = new Contato();
-	             contato.setId(rs.getLong("id"));
-	             contato.setNome(rs.getString("nome"));
-	             contato.setEmail(rs.getString("email"));
-	             //contato.setEndereco(rs.getString("endereco"));
-	             Date date = rs.getDate("dataNascimento");
-	             contato.setDataNascimento(new java.util.Date(date.getTime()));
-	             contatos.add(contato);
-	         }
-	         rs.close();
-	         stmt.close();
-	         connection.close();
-	         return contatos;
-	     } catch (SQLException e) {
-	         throw new RuntimeException(e);
-	     }
+			Connection connection = ConnectionFactory.getInstance()
+					.getConnection();
+			// sei que a ordenacao poderia ser na query, porem, vamos praticar
+			// ordenacao de objetos utilizando a api Collection
+			PreparedStatement stmt = connection
+					.prepareStatement("select * from contato");
+			ResultSet rs = stmt.executeQuery();
+			Contato contato = null;
+			while (rs.next()) {
+				// criando o objeto Contato
+				contato = new Contato();
+				contato.setId(rs.getLong("id"));
+				contato.setNome(rs.getString("nome"));
+				contato.setEmail(rs.getString("email"));
+				// contato.setEndereco(rs.getString("endereco"));
+				Date date = rs.getDate("dataNascimento");
+				contato.setDataNascimento(new java.util.Date(date.getTime()));
+				contatos.add(contato);
+			}
+			rs.close();
+			stmt.close();
+			connection.close();
+			ordenarContatos(contatos);
+			return contatos;
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
 	}
+
+	private void ordenarContatos(List<Contato> contatos) {
+		Collections.sort(contatos);
+//		CriterioDataNascimento criterio = new CriterioDataNascimento();
+//		Collections.sort(contatos, criterio);
+//		
+//		Collections.sort(contatos, new Comparator<Contato>() {
+//			@Override
+//			public int compare(Contato o1, Contato o2) {
+//				// TODO Auto-generated method stub
+//				return 0;
+//			}
+//		});
+	}
+	
+	
+	
+	
+	
 
 }

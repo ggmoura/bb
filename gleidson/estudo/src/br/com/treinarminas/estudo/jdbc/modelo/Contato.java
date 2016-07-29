@@ -2,7 +2,7 @@ package br.com.treinarminas.estudo.jdbc.modelo;
 
 import java.util.Date;
 
-public class Contato {
+public class Contato implements Comparable<Contato> {
 
 	private Long id;
 	private String nome;
@@ -57,5 +57,10 @@ public class Contato {
 		return "Contato [id=" + id + ", nome=" + nome + ", email=" + email
 				+ ", endereco=" + endereco + ", dataNascimento="
 				+ dataNascimento + "]";
+	}
+
+	@Override
+	public int compareTo(Contato o) {
+		return this.nome.compareToIgnoreCase(o.nome);
 	}
 }

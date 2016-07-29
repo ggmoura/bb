@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.Calendar;
 
 import br.com.treinarminas.estudo.jdbc.dao.ContatoDAO;
+import br.com.treinarminas.estudo.jdbc.dao.IBaseDAO;
 import br.com.treinarminas.estudo.jdbc.modelo.Contato;
 import br.com.treinarminas.estudo.jdbc.modelo.Endereco;
 
@@ -27,7 +28,7 @@ public class Main {
 		c.getEndereco().setNumero(202);
 		c.setDataNascimento(calendar.getTime());
 		
-		ContatoDAO dao = new ContatoDAO();
+		IBaseDAO<Contato, Long> dao = new ContatoDAO();
 		dao.adicionar(c);
 		
 		System.out.println("finish");

@@ -13,5 +13,5 @@ public interface IBaseDAO<T, ID> {
 	T recuperar(ID id);
 	
 	List<T> recuperarTodos();
-	
+
 }
