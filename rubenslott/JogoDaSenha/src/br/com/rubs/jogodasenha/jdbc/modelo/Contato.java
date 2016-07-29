@@ -7,7 +7,7 @@ public class Contato {
 	private Long id;
 	private String nome;
 	private String email;
-	private String endereco;
+	private Endereco endereco;
 	private Date dataNascimento;
 
 	// métodos get e set para id, nome, email, endereço e dataNascimento

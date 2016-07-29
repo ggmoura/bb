@@ -17,7 +17,7 @@ public class RecuperaContato {
 	     try {
 	         List<Contato> contatos = new ArrayList<Contato>();
 	         Connection connection = ConnectionFactory.getInstance().getConnection();
-	         PreparedStatement stmt = connection.prepareStatement("select * from contato");
+	         PreparedStatement stmt = connection.prepareStatement("select * from contatos");
 	         ResultSet rs = stmt.executeQuery();
 	         Contato contato = null;
 	         while (rs.next()) {

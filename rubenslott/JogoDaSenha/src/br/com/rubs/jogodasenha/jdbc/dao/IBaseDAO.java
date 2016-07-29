@@ -1,14 +1,16 @@
 package br.com.rubs.jogodasenha.jdbc.dao;
 
-public interface IBaseDAO {
+public interface IBaseDAO<T, ID> {
 
 	
-	void adicionar(Object obj);
+	void adicionar(T obj);
 	
-	void alterar();
+	void alterar(T obj);
 	
-	void remover();
+	void remover(T obj);
 	
-	void recuperar();
+	T recuperar(Long id);
+	
+	List<T> recuperar();
 	
 }

@@ -75,6 +75,7 @@ public class ContatoDAO implements IBaseDAO<Contato, Long> {
 	@Override
 	public List<Contato> recuperarTodos() {
 		List<Contato> contatos = new ArrayList<Contato>();
+		EnderecoDAO dao = new EnderecoDAO();
 		try {
 			Connection connection = ConnectionFactory.getInstance()
 					.getConnection();
@@ -90,7 +91,7 @@ public class ContatoDAO implements IBaseDAO<Contato, Long> {
 				contato.setId(rs.getLong("id"));
 				contato.setNome(rs.getString("nome"));
 				contato.setEmail(rs.getString("email"));
-				// contato.setEndereco(rs.getInt("endereco"));
+				contato.setEndereco(dao.recuperar(rs.getInt("endereco")));
 				Date date = rs.getDate("dataNascimento");
 				contato.setDataNascimento(new java.util.Date(date.getTime()));
 				contatos.add(contato);
