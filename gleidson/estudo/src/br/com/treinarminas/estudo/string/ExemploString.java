@@ -23,7 +23,7 @@ public class ExemploString {
 		System.out.println(frase);
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < 10; i++) {
-			sb.append("Isabela").append(" ").append(i).append(" ");
+			sb.append("Isabela ").append(" ").append(i).append(" ");
 		}
 		System.out.println(sb.toString());
 		
