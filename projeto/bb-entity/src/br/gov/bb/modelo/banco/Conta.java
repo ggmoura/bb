@@ -16,7 +16,9 @@ public abstract class Conta {
 	}
 	
 	public Conta(Double saldo, Cliente cliente) {
+		this();
 		this.cliente = cliente;
+		depositar(saldo);
 	}
 	
 	public final void depositar(Double saldo) {
