@@ -1,24 +1,21 @@
 package br.com.treinarminas.estudo.jdbc.dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.List;
 
-import br.com.treinarminas.estudo.jdbc.ConnectionFactory;
-import br.com.treinarminas.estudo.jdbc.modelo.Contato;
+import br.com.treinarminas.estudo.jdbc.AgendaException;
 import br.com.treinarminas.estudo.jdbc.modelo.Endereco;
 
 public class EnderecoDAO implements IBaseDAO<Endereco, Integer> {
 
 	private Connection connection;
 
-	public EnderecoDAO() {
-		this.connection = ConnectionFactory.getInstance().getConnection();
+	public EnderecoDAO(Connection connection) {
+		this.connection = connection;
 	}
 
 	@Override
@@ -47,7 +44,6 @@ public class EnderecoDAO implements IBaseDAO<Endereco, Integer> {
 				}
 			}
 
-			connection.close();
 		} catch (SQLException e) {
 			throw new RuntimeException();
 		}
@@ -60,16 +56,25 @@ public class EnderecoDAO implements IBaseDAO<Endereco, Integer> {
 	}
 
 	@Override
-	public void remover(Endereco obj) {
-		// TODO Auto-generated method stub
-
+	public void remover(Endereco obj) throws AgendaException {
+		String sql = "DELETE FROM endereco WHERE id = ?";
+		try {
+			PreparedStatement stmt = connection.prepareStatement(sql);
+			stmt.setInt(1, obj.getId());
+			int afetados = stmt.executeUpdate();
+			if (afetados == 0) {
+				AgendaException agendaException = new AgendaException();
+				agendaException.setCodigoMotivo(1);
+				throw agendaException;
+			}
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 	@Override
 	public Endereco recuperar(Integer id) {
 		try {
-			Connection connection = ConnectionFactory.getInstance()
-					.getConnection();
 			// sei que a ordenacao poderia ser na query, porem, vamos praticar
 			// ordenacao de objetos utilizando a api Collection
 			PreparedStatement stmt = connection
@@ -88,7 +93,6 @@ public class EnderecoDAO implements IBaseDAO<Endereco, Integer> {
 			}
 			rs.close();
 			stmt.close();
-			connection.close();
 			return endereco;
 		} catch (SQLException e) {
 			throw new RuntimeException(e);

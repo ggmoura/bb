@@ -16,8 +16,8 @@ public class Contato implements Comparable<Contato> {
 		return this.nome;
 	}
 
-	public void setNome(String novo) {
-		this.nome = novo;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	public String getEmail() {
@@ -40,8 +40,8 @@ public class Contato implements Comparable<Contato> {
 		return this.id;
 	}
 
-	public void setId(Long novo) {
-		this.id = novo;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public Date getDataNascimento() {

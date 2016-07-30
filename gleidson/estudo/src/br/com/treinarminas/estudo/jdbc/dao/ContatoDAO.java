@@ -10,21 +10,21 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import br.com.treinarminas.estudo.jdbc.ConnectionFactory;
+import br.com.treinarminas.estudo.jdbc.AgendaException;
 import br.com.treinarminas.estudo.jdbc.modelo.Contato;
 
 public class ContatoDAO implements IBaseDAO<Contato, Long> {
 
 	private Connection connection;
-
-	public ContatoDAO() {
-		this.connection = ConnectionFactory.getInstance().getConnection();
+	
+	public ContatoDAO(Connection connection) {
+		this.connection = connection;
 	}
 
 	@Override
 	public void adicionar(Contato contato) {
 
-		EnderecoDAO enderecoDAO = new EnderecoDAO();
+		EnderecoDAO enderecoDAO = new EnderecoDAO(connection);
 
 		String sql = "insert into contato (nome,email,endereco,dataNascimento) "
 				+ "values (?,?,?,?)";
@@ -51,7 +51,6 @@ public class ContatoDAO implements IBaseDAO<Contato, Long> {
 				}
 			}
 
-			connection.close();
 		} catch (SQLException e) {
 			throw new RuntimeException();
 		}
@@ -63,8 +62,26 @@ public class ContatoDAO implements IBaseDAO<Contato, Long> {
 	}
 
 	@Override
-	public void remover(Contato contato) {
-		// TODO Auto-generated method stub
+	public void remover(Contato contato) throws AgendaException {
+		String sql = "DELETE FROM contato WHERE id = ?";
+		try {
+			String nome = null;
+			EnderecoDAO enderecoDAO = new EnderecoDAO(connection);
+			enderecoDAO.remover(contato.getEndereco());
+			PreparedStatement stmt = connection.prepareStatement(sql);
+			nome.toString();
+			stmt.setLong(1, contato.getId());
+			int afetados = stmt.executeUpdate();
+			if (afetados == 0) {
+				AgendaException agendaException = new AgendaException();
+				agendaException.setCodigoMotivo(1);
+				throw agendaException;
+			}
+		} catch (AgendaException e) {
+			//TODO
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 	@Override
@@ -75,10 +92,8 @@ public class ContatoDAO implements IBaseDAO<Contato, Long> {
 	@Override
 	public List<Contato> recuperarTodos() {
 		List<Contato> contatos = new ArrayList<Contato>();
-		EnderecoDAO dao = new EnderecoDAO();
+		EnderecoDAO dao = new EnderecoDAO(connection);
 		try {
-			Connection connection = ConnectionFactory.getInstance()
-					.getConnection();
 			// sei que a ordenacao poderia ser na query, porem, vamos praticar
 			// ordenacao de objetos utilizando a api Collection
 			PreparedStatement stmt = connection
@@ -98,7 +113,6 @@ public class ContatoDAO implements IBaseDAO<Contato, Long> {
 			} 
 			rs.close();
 			stmt.close();
-			connection.close();
 			ordenarContatos(contatos);
 			return contatos;
 		} catch (SQLException e) {

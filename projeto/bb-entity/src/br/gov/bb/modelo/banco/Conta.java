@@ -15,12 +15,7 @@ public abstract class Conta {
 		saldo = 0d;
 	}
 	
-	public Conta(Double saldo) {
-		this();
-	}
-	
 	public Conta(Double saldo, Cliente cliente) {
-		this(saldo);
 		this.cliente = cliente;
 	}
 	
