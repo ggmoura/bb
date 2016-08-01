@@ -64,11 +64,11 @@ public class ContatoDAO implements IBaseDAO<Contato, Long> {
 	public void remover(Contato contato) throws AgendaException {
 		String sql = "DELETE FROM contato WHERE id = ?";
 		try {
-			String nome = null;
+			//String nome = null;
 			EnderecoDAO enderecoDAO = new EnderecoDAO(connection);
 			enderecoDAO.remover(contato.getEndereco());
 			PreparedStatement stmt = connection.prepareStatement(sql);
-			nome.toString();
+			//nome.toString();
 			stmt.setLong(1, contato.getId());
 			int afetados = stmt.executeUpdate();
 			if (afetados == 0) {
@@ -96,8 +96,7 @@ public class ContatoDAO implements IBaseDAO<Contato, Long> {
 		try {
 			// sei que a ordenacao poderia ser na query, porem, vamos praticar
 			// ordenacao de objetos utilizando a api Collection
-			PreparedStatement stmt = connection
-					.prepareStatement("select * from contato");
+			PreparedStatement stmt = connection.prepareStatement("select * from contato");
 			ResultSet rs = stmt.executeQuery();
 			Contato contato = null;
 			while (rs.next()) {
