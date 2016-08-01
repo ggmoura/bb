@@ -6,7 +6,7 @@ public class ExemploString {
 		String nome = "Isabela";
 		System.out.println("Isabela");
 		String nome2 = "Isabela";
-		String nome3 = new String("Gleidson");
+		String nome3 = new String("Isabela");
 		nome2 = null;
 		nome3 = null;
 		
@@ -33,6 +33,25 @@ public class ExemploString {
 		System.out.println("nome2 == nome3: " + nome4 == nome3);
 		System.out.println(frase);
 		String nomeTemp = "Isabela 3";
+		
+		nomeTemp.isEmpty();
+		nomeTemp.length();
+		char[] letras = nomeTemp.toCharArray();
+		
+		for (Character c : letras) {
+			
+		}
+		
+		for (int i = 0; i < nomeTemp.length(); i++) {
+			nomeTemp.charAt(i);
+		}
+	}
+	
+	void teste(Character c) {
+		
+	}
+	void teste(char c) {
+		
 	}
 	
 	
