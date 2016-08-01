@@ -1,40 +1,48 @@
 package br.com.rubs.jogodasenha.jdbc.principal;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Calendar;
-import java.util.List;
 
-import br.com.rubs.jogodasenha.jdbc.dao.CriaContato;
-import br.com.rubs.jogodasenha.jdbc.dao.RecuperaContato;
+import br.com.rubs.jogodasenha.jdbc.ConnectionFactory;
+import br.com.rubs.jogodasenha.jdbc.dao.ContatoDAO;
+import br.com.rubs.jogodasenha.jdbc.dao.IBaseDAO;
 import br.com.rubs.jogodasenha.jdbc.modelo.Contato;
+import br.com.rubs.jogodasenha.jdbc.modelo.Endereco;
 
 public class Main {
 
 	public static void main(String[] args) throws SQLException {
 		
-//		Calendar calendar = Calendar.getInstance();
-//		calendar.set(Calendar.DAY_OF_MONTH, 27);
-//		calendar.set(Calendar.MONTH, 9);
-//		calendar.set(Calendar.YEAR, 2011);
-//		
-//		CriaContato cc = new CriaContato();
-//		Contato c = new Contato();
-//		c.setNome("Rubens Lott");
-//		c.setEmail("rubenslott@gmail.com");
-//		c.setEndereco("Rua Itambacuri, 139");
-//		c.setDataNascimento(calendar.getTime());
-//		cc.criarContato(c);
-//	
-//		System.out.println("finish");
+		Calendar calendar = Calendar.getInstance();
+		calendar.set(Calendar.DAY_OF_MONTH, 15);
+		calendar.set(Calendar.MONTH, 5);
+		calendar.set(Calendar.YEAR, 1962);
+
+		Contato c = new Contato();
+		c.setNome("Rubens Lott de Almeida Cunha");
+		c.setEmail("rubenslott@gmail.com");
 		
-		RecuperaContato recuperaContato = new RecuperaContato();
-		List<Contato> contatos = recuperaContato.getListaContatos();
-		
-		for (Contato contato : contatos) {
-			System.out.println(contato);
-		}
-		
-		
-	}
+		c.setEndereco(new Endereco());
+		c.getEndereco().setLogradouro("Rua Itambacuri");
+		c.getEndereco().setNumero(139);
+		c.getEndereco().setComplemento("Apto 601");
+		c.getEndereco().setBairro("Carlos Prates");
+
+		c.setDataNascimento(calendar.getTime());
+
+		Connection connection = ConnectionFactory.getInstance().getConnection();
+
+		IBaseDAO<Contato, Long> dao = new ContatoDAO(connection);
+		dao.adicionar(c);
 	
+		System.out.println("Successfully done!!!");
+		
+//		RecuperaContato recuperaContato = new RecuperaContato();
+//		List<Contato> contatos = recuperaContato.getListaContatos();
+//		
+//		for (Contato contato : contatos) {
+//			System.out.println(contato);
+//		}
+	}
 }

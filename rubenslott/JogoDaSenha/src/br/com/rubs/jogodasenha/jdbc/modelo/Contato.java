@@ -10,42 +10,42 @@ public class Contato {
 	private Endereco endereco;
 	private Date dataNascimento;
 
-	// métodos get e set para id, nome, email, endereço e dataNascimento
+	// Métodos GET e SET para id, nome, email, endereço e dataNascimento
 
-	public String getNome() {
-		return this.nome;
+	public Long getId() {
+		return id;
 	}
 
-	public void setNome(String novo) {
-		this.nome = novo;
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	public String getEmail() {
-		return this.email;
+		return email;
 	}
 
-	public void setEmail(String novo) {
-		this.email = novo;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
-	public String getEndereco() {
-		return this.endereco;
+	public Endereco getEndereco() {
+		return endereco;
 	}
 
-	public void setEndereco(String novo) {
-		this.endereco = novo;
-	}
-
-	public Long getId() {
-		return this.id;
-	}
-
-	public void setId(Long novo) {
-		this.id = novo;
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
 	}
 
 	public Date getDataNascimento() {
-		return this.dataNascimento;
+		return dataNascimento;
 	}
 
 	public void setDataNascimento(Date dataNascimento) {
