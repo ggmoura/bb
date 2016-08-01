@@ -1,4 +1,4 @@
-package br.com.treinarminas.estudo.collection.ordenacao;
+package br.com.rubs.jogodasenha.collection.ordenacao;
 
 import java.util.Comparator;
 
