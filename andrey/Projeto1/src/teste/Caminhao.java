@@ -3,8 +3,8 @@ package teste;
 
 public class Caminhao {
 
-	int eixo;
-	long numchassi;
+	Integer eixo;
+	Long numchassi;
 	String cabine;
 	String nome;
 	
