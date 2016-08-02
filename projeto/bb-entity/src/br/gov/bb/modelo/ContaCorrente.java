@@ -10,7 +10,6 @@ public class ContaCorrente extends Conta implements IPagavel {
 	private Double limiteCredito;
 
 	public ContaCorrente() {
-		super(10D);
 		limiteCredito = 300D;
 	}
 

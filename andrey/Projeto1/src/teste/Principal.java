@@ -2,19 +2,19 @@ package teste;
 
 public class Principal {
 
-	public static void main(String[] args) {
+	public static void main(String	[] args) {
 
 		Caminhao veiculo1 = new Caminhao();
 		veiculo1.nome = "Daily";
 		veiculo1.cabine = "Cabine Curta";
 		veiculo1.eixo = 2;
-		veiculo1.numchassi = 123456789;
+		veiculo1.numchassi = 123456789L;
 
 		Caminhao veiculo2 = new Caminhao();
 		veiculo2.nome = "Vertis";
 		veiculo2.cabine = "Cabine Longa";
 		veiculo2.eixo = 2;
-		veiculo2.numchassi = 987654321;
+		veiculo2.numchassi = 987654321L;
 		
 		Iveco empresa1 = new Iveco();
 		empresa1.caminhao = veiculo1;

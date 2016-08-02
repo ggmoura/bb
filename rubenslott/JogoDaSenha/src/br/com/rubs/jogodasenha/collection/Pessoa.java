@@ -1,4 +1,4 @@
-package br.com.treinarminas.estudo.collection;
+package br.com.rubs.jogodasenha.collection;
 
 public class Pessoa {
 
@@ -44,10 +44,5 @@ public class Pessoa {
 	}
 	
 
-	@Override
-	protected void finalize() throws Throwable {
-		System.out.println("rolou...");
-	}
-	
 	
 }
