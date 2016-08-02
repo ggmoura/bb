@@ -44,5 +44,10 @@ public class Pessoa {
 	}
 	
 
+	@Override
+	protected void finalize() throws Throwable {
+		System.out.println("rolou...");
+	}
+	
 	
 }

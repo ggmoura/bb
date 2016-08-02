@@ -12,6 +12,7 @@ public class ExemploString {
 		
 		
 		String nome4 = "Gleidson";
+		
 		String frase = "";
 		//StringBuffer sb = new StringBuffer();
 		
