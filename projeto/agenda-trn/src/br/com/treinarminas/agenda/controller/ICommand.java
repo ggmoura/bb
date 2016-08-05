@@ -5,6 +5,12 @@ import javax.servlet.http.HttpServletResponse;
 
 public interface ICommand {
 	
-	void execute(HttpServletRequest request, HttpServletResponse response);
+	/**
+	 * 
+	 * @param request
+	 * @param response
+	 * @return - pagina jsp a ser acessada qdo o metodo for executado
+	 */
+	String execute(HttpServletRequest request, HttpServletResponse response);
 	
 }

@@ -4,18 +4,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Agenda</title>
 </head>
 <body>
 
-	<form action="index.trn">
-		
-
-		<a href="novo.trn?command=br.com.treinarminas.agenda.controller.AccessCreateContactController">teste</a>
-		
-		
-
-	</form>
+	<h1>tela edicao</h1>
 
 </body>
 </html>
