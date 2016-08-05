@@ -3,6 +3,7 @@ package br.com.treinarminas.agenda.modelo;
 public enum TipoTelefone {
 
 	CELULAR("Celular"),
+	RESIDENCIAL("Residencial"),
 	FIXO("Fixo"),
 	COMERCIAL("Comercial");
 	

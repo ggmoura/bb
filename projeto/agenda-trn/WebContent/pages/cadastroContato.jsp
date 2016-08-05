@@ -1,3 +1,5 @@
+<%@page import="br.com.treinarminas.agenda.modelo.TipoTelefone"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -7,7 +9,6 @@
 <title>Agenda</title>
 </head>
 <body>
-
 	<form action="cadastro.trn" method="post">
 		<input type="hidden" value="br.com.treinarminas.agenda.controller.CreateContactController" name="command">
 		<div class="ui-field-contain">
@@ -23,6 +24,16 @@
 			<input name="ddi" id="ddi" type="text"/>&#160;
 			<input name="ddd" id="ddi" type="text"/>&#160;
 			<input name="numero" id="ddi" type="text"/>
+			<select name="tipoTelefone" id="tipoTelefone">
+				<option value="-1">Selecione</option>
+				<%
+					List<TipoTelefone> tipos = (List<TipoTelefone>) request.getServletContext().getAttribute("tipos");
+					for(TipoTelefone tipo : tipos) {
+						out.println("<option value='" + tipo + "'>" + tipo.getDescricao() + "</option>");
+					}
+				
+				%>
+			</select>
 		</div>
 		<div class="ui-field-contain">
 			<label for="logradouro">Logradouro:</label>
