@@ -1,4 +1,4 @@
-package br.com.treinarminas.estudo.jdbc.modelo;
+package br.com.treinarminas.agenda.modelo;
 
 import java.util.Date;
 
@@ -9,7 +9,6 @@ public class Contato implements Comparable<Contato> {
 	private String email;
 	private Endereco endereco;
 	private Date dataNascimento;
-	private Telefone telefone;
 
 	// m�todos get e set para id, nome, email, endere�o e dataNascimento
 
@@ -51,15 +50,6 @@ public class Contato implements Comparable<Contato> {
 
 	public void setDataNascimento(Date dataNascimento) {
 		this.dataNascimento = dataNascimento;
-	}
-	
-
-	public Telefone getTelefone() {
-		return telefone;
-	}
-
-	public void setTelefone(Telefone telefone) {
-		this.telefone = telefone;
 	}
 
 	@Override

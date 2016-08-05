@@ -2,6 +2,9 @@ package br.com.treinar.web.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,12 +26,21 @@ public class PrimeiroServlet extends HttpServlet {
         super();
         // TODO Auto-generated constructor stub
     }
+    
+    @Override
+    public void init() throws ServletException {
+    	System.out.println("Passei no init");
+    	super.init();
+    }
 
 	/**
 	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
+		
+		DateFormat formatador = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+		
 		
 		PrintWriter out = response.getWriter();
 		out.println("<!DOCTYPE html>");
@@ -37,9 +49,16 @@ public class PrimeiroServlet extends HttpServlet {
 		out.println("<title>My First Code</title>");
 		out.println("</head>");
 		out.println("<body>");
-		out.println("<h1>Hello, world!</h1>");
+		out.println("<h1>Data</h1><h2>"+ formatador.format(new Date()) +"</h2>");
 		out.println("</body>");
 		out.println("</html>");
+	}
+	
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		super.doGet(req, resp);
 	}
 
 }
