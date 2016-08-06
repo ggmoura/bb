@@ -30,7 +30,8 @@ public class CreateContactController implements ICommand {
 		List<Contato> contatos = AgendaUtil.getInstance().getContatos();
 		contatos.add(contato);
 		
-		return "/pages/edicaoContato.jsp";
+		AccessListContactController lista = new AccessListContactController();
+		return lista.execute(request, response);
 		
 	}
 

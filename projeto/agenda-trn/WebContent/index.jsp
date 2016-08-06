@@ -11,7 +11,8 @@
 	<form action="index.trn">
 		
 
-		<a href="novo.trn?command=br.com.treinarminas.agenda.controller.AccessCreateContactController">teste</a>
+		<a href="novo.trn?command=br.com.treinarminas.agenda.controller.AccessCreateContactController">Novo</a>
+		<a href="list.trn?command=br.com.treinarminas.agenda.controller.AccessListContactController">Lista</a>
 		
 		
 
