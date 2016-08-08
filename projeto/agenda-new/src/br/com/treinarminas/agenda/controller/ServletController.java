@@ -23,6 +23,9 @@ public class ServletController extends HttpServlet {
 	@Override
 	public void init(ServletConfig config) throws ServletException {
 		super.init(config);
+		TipoTelefone[] tiposPossiveis = TipoTelefone.values();
+		List<TipoTelefone> tipos = Arrays.asList(tiposPossiveis);
+		config.getServletContext().setAttribute("tipos", tipos);
 	}
 
 	private static final long serialVersionUID = 1L;
@@ -30,6 +33,10 @@ public class ServletController extends HttpServlet {
 	protected void service(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		String commandStr = request.getParameter("command");
+		
+		String nome = null;
+		
+		nome.toCharArray();
 		try {
 			ICommand command = (ICommand) Class.forName(commandStr)
 					.newInstance();
