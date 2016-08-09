@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+	<h:head>
+	
+	
+	</h:head>
+	
+	<h:body>
+		<h:form id="formContato">
+			<h:panelGroup id="groupContato" layout="block">
+				<h:inputText id="nome" value="#{contatoController.contato.nome}" placeholder="Nome" /><br />
+				<h:inputText id="dataNascimento" value="#{contatoController.contato.dataNascimento}" placeholder="Data Nascimento" >
+				<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" timeZone="America/Sao_Paulo"/>
+				</h:inputText>
+				<h:commandButton id="btnSalvar" action="#{contatoController.salvar()}" value="Salvar" />
+			</h:panelGroup>
+			
+		</h:form>
+	</h:body>
+
+</html>
