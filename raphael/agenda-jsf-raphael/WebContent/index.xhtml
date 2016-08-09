@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+	<h:head>
+		<title>Agenda de Contatos</title>		
+		<h:outputScript library="scripts" name="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" />
+		<h:outputScript library="scripts" name="https://code.jquery.com/jquery-3.1.0.min.js" />		
+		<h:outputScript library="css" name="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+		<h:outputScript library="css" name="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" />
+	</h:head>	
+	<h:body>
+		<h:form id="formContato" >
+			<h:panelGroup >
+				<h:inputText id="nome" value="#{contatoController.contato.nome}" /><br />
+				<h:inputText id="email" value="#{contato.Controller.contato.email}" />
+				<h:commandButton id="btnSalvar" action="#{contato.Controller.contato.salvar()}" value="Salvar" />
+			</h:panelGroup>	
+		</h:form>
+	</h:body>
+</html>
