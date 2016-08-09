@@ -33,16 +33,14 @@ public class ServletController extends HttpServlet {
 	protected void service(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		String commandStr = request.getParameter("command");
-		
-		String nome = null;
-		
-		nome.toCharArray();
+	
 		try {
 			ICommand command = (ICommand) Class.forName(commandStr)
 					.newInstance();
 			String destino = command.execute(request, response);
+			request.setAttribute("resourcePage", destino);
 			RequestDispatcher requestDispatcher = request
-					.getRequestDispatcher(destino);
+					.getRequestDispatcher("/index.jsp");
 			requestDispatcher.forward(request, response);
 
 		} catch (Exception e) {

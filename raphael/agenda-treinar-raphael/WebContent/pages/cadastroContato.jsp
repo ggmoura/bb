@@ -31,7 +31,13 @@
 						  </div>	
 						  <div class="form-group">
 						    <label for="telefone" class="col-sm-2 control-label">Telefone</label>
-						    <div class="col-sm-10">
+						    <div class="col-sm-3">
+						      <input type="text" class="form-control" size="10" id="ddi" name="ddi" placeholder="+55">
+						    </div>
+						    <div class="col-sm-3">
+						      <input type="text" class="form-control" id="ddd" name="ddd" placeholder="31">
+						    </div>
+						    <div class="col-sm-3">
 						      <input type="text" class="form-control" id="telefone" name="telefone" placeholder="(00) 9999-9999">
 						    </div>
 						  </div>	
