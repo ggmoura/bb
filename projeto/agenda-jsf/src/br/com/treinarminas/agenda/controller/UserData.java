@@ -26,6 +26,10 @@ public class UserData implements Serializable {
 		editar = Boolean.FALSE;
 	}
 	
+	public void voltar() {
+		editar = Boolean.FALSE;		
+	}
+	
 	private static final ArrayList<Employee> employees = new ArrayList<Employee>(
 			Arrays.asList(new Employee("John", "Marketing", 30, 2000.00),
 					new Employee("Robert", "Marketing", 35, 3000.00),

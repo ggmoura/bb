@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+
+	<h:form id="formEdicao">
+		<h:panelGrid columns="2">
+			<h:outputText value="Name" />
+			<h:inputText value="#{userData.editado.name}" />
+			<h:outputText value="Department" />
+			<h:inputText value="#{userData.editado.department}" />
+			<h:outputText value="Age" />
+			<h:inputText value="#{userData.editado.age}" />
+			<h:outputText value="Salary" />
+			<h:inputText value="#{userData.editado.salary}" />
+		</h:panelGrid>
+		<h:commandButton action="#{userData.editEmployee()}" value="Salvar" />
+		<h:commandLink action="#{userData.voltar()}" value="Voltar" />
+	</h:form>
+
+</html>
