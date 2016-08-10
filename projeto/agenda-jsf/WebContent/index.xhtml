@@ -11,14 +11,34 @@
 	
 	<h:body>
 		<h:form id="formContato">
+			<h:messages id="msg"/>
+		
 			<h:panelGroup id="groupContato" layout="block">
-				<h:inputText id="nome" value="#{contatoController.contato.nome}" placeholder="Nome" /><br />
-				<h:inputText id="dataNascimento" value="#{contatoController.contato.dataNascimento}" placeholder="Data Nascimento" >
-				<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" timeZone="America/Sao_Paulo"/>
-				</h:inputText>
-				<h:commandButton id="btnSalvar" action="#{contatoController.salvar()}" value="Salvar" />
+				URL: 
+				<h:inputText id="url" value="#{controller.url}" placeholder="URL" required="true" >
+					<f:validator validatorId="br.com.treinar.test.UrlValidator"/>
+				</h:inputText><br />
+				Nome:
+				<h:inputText id="nome" value="#{controller.contato.nome}" placeholder="Nome" required="true" 
+							 label="Nome" requiredMessage="Isabela">
+					<f:validateLength minimum="5" maximum="10"/>
+				</h:inputText><br />
+				Data:
+				<h:inputText id="dataNascimento" value="#{controller.contato.dataNascimento}" placeholder="Data Nascimento" >
+					<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" timeZone="America/Sao_Paulo"/>
+				</h:inputText><br />
+				<h:outputText value="#{controller.contato.email}" /><br />
+
+				<h:selectOneMenu value="#{controller.contato.telefone.tipo}">
+					<f:selectItems value="#{applicationScope.tipos}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.descricao}"/>						
+				</h:selectOneMenu>
+				
+				<h:selectOneMenu value="#{controller.tipo}">
+					<f:selectItems value="#{applicationScope.itens}" var="item" itemValue="#{tipo}" itemLabel="#{tipo.descricao}"/>						
+				</h:selectOneMenu>
 			</h:panelGroup>
-			
+			<h:commandButton id="btnSalvar" action="#{controller.salvar()}" value="Salvar" />
+			<h:message for="nome"/>
 		</h:form>
 	</h:body>
 

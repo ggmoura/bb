@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+	<h:head>
+	
+	
+	</h:head>
+	
+	<h:body>
+		<h:form id="formContato">
+			<h:inputText value="#{viewScopeAgenda.telefone}">
+				<f:converter converterId="br.com.treinar.test.TelefoneConverter"/>
+			</h:inputText>
+			<h:selectOneMenu value="#{viewScopeAgenda.telefone.tipo}" required="true">
+				<f:selectItem itemLabel="Selecione" noSelectionOption="true"/>
+				<f:selectItems value="#{viewScopeAgenda.tipos}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.descricao}"/>						
+			</h:selectOneMenu>
+			<h:commandButton id="btnSalvar" action="#{viewScopeAgenda.salvar()}" value="Salvar" /><br />
+			<h:commandButton id="btnGoToIndex" action="#{viewScopeAgenda.navegarIndex()}" value="Index" />
+		</h:form>
+	</h:body>
+
+</html>

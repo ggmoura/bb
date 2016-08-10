@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<title>JSF tutorial</title>
+	<style>
+.employeeTable {
+	border-collapse: collapse;
+	border: 1px solid #000000;
+}
+
+.employeeTableHeader {
+	text-align: center;
+	background: none repeat scroll 0 0 #B5B5B5;
+	border-bottom: 1px solid #000000;
+	padding: 2px;
+}
+
+.employeeTableOddRow {
+	text-align: center;
+	background: none repeat scroll 0 0 #FFFFFFF;
+}
+
+.employeeTableEvenRow {
+	text-align: center;
+	background: none repeat scroll 0 0 #D3D3D3;
+}
+</style>
+</h:head>
+<h:body>
+	<h2>DataTable Example</h2>
+	<h:panelGroup rendered="#{!userData.editar}">
+		<h:form>
+			<h:dataTable value="#{userData.employees}" var="employee"
+				styleClass="employeeTable" headerClass="employeeTableHeader"
+				rowClasses="employeeTableOddRow,employeeTableEvenRow">
+				<h:column>
+					<f:facet name="header">Name</f:facet>    				
+	            #{employee.name}
+	         </h:column>
+				<h:column>
+					<f:facet name="header">Department</f:facet>
+	            #{employee.department}
+	         </h:column>
+				<h:column>
+					<f:facet name="header">Age</f:facet>
+	            #{employee.age}
+	         </h:column>
+				<h:column>
+					<f:facet name="header">Salary</f:facet>
+	            #{employee.salary}
+	         </h:column>
+				<h:column>
+					<f:facet name="header">Editado</f:facet>
+	            #{employee.canEdit}
+	         </h:column>
+				<h:column>
+					<f:facet name="header">Editar</f:facet>
+					<h:commandButton action="#{userData.canEditEmployee(employee)}"
+						value="Editar" />
+
+				</h:column>
+			</h:dataTable>
+		</h:form>
+
+	</h:panelGroup>
+
+	<h:panelGroup layout="block" rendered="#{userData.editar}">
+		<h:form id="formEdicao">
+			<h:panelGrid columns="2">
+				<h:outputText value="Name" />
+				<h:inputText value="#{userData.editado.name}" />
+				<h:outputText value="Department" />
+				<h:inputText value="#{userData.editado.department}" />
+				<h:outputText value="Age" />
+				<h:inputText value="#{userData.editado.age}" />
+				<h:outputText value="Salary" />
+				<h:inputText value="#{userData.editado.salary}" />
+			</h:panelGrid>
+			<h:commandButton action="#{userData.editEmployee()}" value="Salvar" />
+		</h:form>
+
+	</h:panelGroup>
+
+
+
+
+</h:body>
+
+</html>
