@@ -26,14 +26,14 @@ public class Contato {
 	@Column(unique = true, nullable = false)
 	private String email;
 
-	@ManyToOne(cascade = CascadeType.PERSIST, fetch=FetchType.LAZY)
+	@ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
 	private Endereco endereco;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataNascimento;
 
-	@OneToMany(mappedBy = "contato", cascade=CascadeType.ALL, fetch=FetchType.EAGER)
-	private List<Telefone> telefones;
+	@OneToMany(mappedBy="telefone", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<ContatoTelefone> telefones;
 
 	public String getNome() {
 		return this.nome;
@@ -75,11 +75,11 @@ public class Contato {
 		this.dataNascimento = dataNascimento;
 	}
 
-	public List<Telefone> getTelefones() {
+	public List<ContatoTelefone> getTelefones() {
 		return telefones;
 	}
 
-	public void setTelefones(List<Telefone> telefones) {
+	public void setTelefones(List<ContatoTelefone> telefones) {
 		this.telefones = telefones;
 	}
 

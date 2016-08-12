@@ -1,5 +1,8 @@
 package br.com.treinar.jpa.agenda.modelo;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -7,7 +10,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
@@ -25,8 +28,8 @@ public class Telefone {
 	private Integer ddd;
 	private Integer numero;
 
-	@ManyToOne
-	private Contato contato;
+	@OneToMany(mappedBy="contato", cascade=CascadeType.ALL)
+	private List<ContatoTelefone> contatos;
 
 	@Enumerated(EnumType.STRING)
 	private TipoTelefone tipo;
@@ -71,12 +74,5 @@ public class Telefone {
 		this.tipo = tipo;
 	}
 
-	public Contato getContato() {
-		return contato;
-	}
-
-	public void setContato(Contato contato) {
-		this.contato = contato;
-	}
 
 }

@@ -12,6 +12,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import br.com.treinar.jpa.agenda.modelo.Contato;
+import br.com.treinar.jpa.agenda.modelo.ContatoTelefone;
 import br.com.treinar.jpa.agenda.modelo.Endereco;
 import br.com.treinar.jpa.agenda.modelo.Telefone;
 import br.com.treinar.jpa.agenda.modelo.TipoTelefone;
@@ -47,19 +48,28 @@ public class TestContato {
 		t1.setDdd(31);
 		t1.setNumero(987749131);
 		t1.setTipo(TipoTelefone.CELULAR);
-		t1.setContato(c);
+		//t1.setContato(c);
 
 		Telefone t2 = new Telefone();
 		t2.setDdi(55);
 		t2.setDdd(31);
 		t2.setNumero(25359131);
 		t2.setTipo(TipoTelefone.FIXO);
-		t2.setContato(c);
-
-		c.setTelefones(new ArrayList<Telefone>());
-		c.getTelefones().add(t1);
-		c.getTelefones().add(t2);
-
+		
+		ContatoTelefone ct1 = new ContatoTelefone();
+		ct1.setContato(c);
+		ct1.setTelefone(t1);
+		
+		ContatoTelefone ct2 = new ContatoTelefone();
+		ct2.setContato(c);
+		ct2.setTelefone(t2);
+		
+		c.setTelefones(new ArrayList<ContatoTelefone>());
+		c.getTelefones().add(ct1);
+		c.getTelefones().add(ct2);
+		
+		
+		
 		c.setEndereco(e);
 		em.persist(c);
 		em.getTransaction().commit();
